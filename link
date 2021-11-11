@@ -1,0 +1,8 @@
+// link to start email on less secure_app
+
+
+https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4NIaF8h_U0Oy63peB9CcmFqP4VAHJXXgbMT0Glf4PUQTG27GBXQXQOR4IRWyHfOFzA7MxYBoAcqSPj9UjhQhqqkUfWE4A
+
+port numbere in schema must be on which particular emailserfver run
+like Gmail run on port: 465
+host: smtp.gmail.com

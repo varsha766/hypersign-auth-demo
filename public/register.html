@@ -1,0 +1,46 @@
+<html>
+    <head> 
+
+        <title> Hypersign Login</title>
+
+    </head>
+    <body>
+        <h1> Register</h1>
+        <form> 
+            <input type="text" name="name" placeholder="Enter your name"/><br />
+            <input type="text" name="email" placeholder="Enter your email"/><br />
+            <input type="text" name="phoneNumber" placeholder="Enter your phone number"/><br />
+            <br />
+        </form>
+        <button onclick="register()">Register</button>
+        <a href='/'>Login</a>
+    </body>
+        <script>
+            async function register(){
+                let data ={user:{}};
+                const inputs= document.getElementsByTagName("input");
+               
+                for(const input of inputs){
+                    data["user"][input.attributes.getNamedItem("name").textContent]= input.value;
+                 
+                }
+                console.log(data);
+                //calling register api with data
+                const resp= await fetch(`http://${window.location.host}/hs/api/v2/register`,
+                {
+                    method: "Post",
+                    body:JSON.stringify(data),
+                    headers:{
+                        "content-type":"application/json",
+                    },
+                }
+                );
+
+                console.log(resp);
+                const json = await resp.json();
+               
+                alert("Your creedential is sent to ypu in your email, scan the QR code to receive credential in your Hypersign Identitiy wallet");
+            }
+        </script>
+
+</html>
