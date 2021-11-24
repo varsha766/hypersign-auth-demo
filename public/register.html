@@ -10,6 +10,10 @@
             <input type="text" name="name" placeholder="Enter your name"/><br />
             <input type="text" name="email" placeholder="Enter your email"/><br />
             <input type="text" name="phoneNumber" placeholder="Enter your phone number"/><br />
+            <input type="text" name="age" placeholder="Enter your age"/><br />
+            <input type="text" name="DOB" placeholder="Enter your DOB"/><br />
+            <input type="text" name="region" placeholder="Enter your location"/><br />
+    
             <br />
         </form>
         <button onclick="register()">Register</button>
@@ -26,7 +30,7 @@
                 }
                 console.log(data);
                 //calling register api with data
-                const resp= await fetch(`http://${window.location.host}/hs/api/v2/register`,
+                const resp= await fetch(`https://${window.location.host}/hs/api/v2/register`,
                 {
                     method: "Post",
                     body:JSON.stringify(data),

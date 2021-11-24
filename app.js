@@ -1,16 +1,19 @@
-const http = require('http');
+const https = require('https');
+const fs= require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const HypersignAuth = require('hypersign-auth-js-sdk');
-
+const key= fs.readFileSync('./cert/CA/localhost/localhost.decrypted.key');
+const cert= fs.readFileSync('./cert/CA/localhost/localhost.crt')
 const app = express();
-const server = http.createServer(app);
-const port = 5020;
+const server = https.createServer({key, cert}, app);
+const port = 5030;
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json())
+
 const hypersign = new HypersignAuth(server);
 app.post("/hs/api/v2/auth", hypersign.authenticate.bind(hypersign), async (req, res) => {
   try {
