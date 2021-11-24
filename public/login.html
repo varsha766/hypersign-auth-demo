@@ -12,16 +12,16 @@
         <div id="qrcode"></div>
         <p>OR</p>
         <p class="web"></p>
-        <p > <a href= "/register">Register </a></p>
     
 
     </div>
 </body>
 <script>
     $(document).ready(function () {
-        let ws = new WebSocket('ws://192.168.1.4:5020');
+        let ws = new WebSocket('ws://localhost:3000');
         ws.onmessage = function ({ data }) {
             let messageData = JSON.parse(data);
+            console.log(messageData)
             $("#qrcode").html("");
             if (messageData.op == 'init') {
                 $("#qrcode").qrcode({ "width": 300, "height": 300, "text": JSON.stringify(messageData.data) });
@@ -33,8 +33,8 @@
                 $("#qrcode").hide();
                 const authorizationToken = messageData.data.token
                 window.location.href=`${window.location}home`
-               // $("#authToken").text(authorizationToken)
-                console.log(authorizationToken);
+              //  $("#authToken").text(authorizationToken)
+               // console.log(authorizationToken);
 
             }
         };
