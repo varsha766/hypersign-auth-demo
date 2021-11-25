@@ -8,18 +8,19 @@
 <body>
     
     <div align='center'>
-        <h1> Login Page </h1>
+        <h1 id="log"> Login Page </h1>
         <div id="qrcode"></div>
-        <p>OR</p>
+        <p id= "p">OR</p>
         <p class="web"></p>
-        <p > <a href= "/register">Register </a></p>
+        <p id= "authToken"> </p>
+
     
 
     </div>
 </body>
 <script>
     $(document).ready(function () {
-        let ws = new WebSocket('ws://192.168.1.4:5020');
+        let ws = new WebSocket('ws://localhost:5020');
         ws.onmessage = function ({ data }) {
             let messageData = JSON.parse(data);
             $("#qrcode").html("");
@@ -31,9 +32,12 @@
                 console.log(messageData)
                 ws.close();
                 $("#qrcode").hide();
-                const authorizationToken = messageData.data.token
-                window.location.href=`${window.location}home`
-               // $("#authToken").text(authorizationToken)
+                $(".web").hide();
+                $("#log").hide();
+                $("#p").hide();
+                const authorizationToken = JSON.stringify(messageData.data.hypersign.data.accessToken)
+              //  window.location.href=`${window.location}home`
+                $("#authToken").text(authorizationToken)
                 console.log(authorizationToken);
 
             }
