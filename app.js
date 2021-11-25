@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json())
 const hypersign = new HypersignAuth(server);
-app.post("/hs/api/v2/auth", hypersign.authenticate.bind(hypersign), async (req, res) => {
+app.post("/auth/login", hypersign.authenticate.bind(hypersign), async (req, res) => {
   try {
     const user = req.body.hsUserData;
     // res.status(200).send(authToken);
