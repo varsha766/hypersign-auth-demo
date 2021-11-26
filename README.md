@@ -1,1 +1,2 @@
-## Hypersign autheentication using websocket
+## Hypersign authentication using polling
+
