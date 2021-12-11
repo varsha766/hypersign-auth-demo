@@ -35,15 +35,15 @@
         const { hypersign } = js;
         const { data } = hypersign;
         const { challenge } = data;
-        
+                
         formQRCodeHTML(JSON.stringify(data));
 
         if (challenge) {
           const POLLING_INTERVAL = 5000; // ms
-          /// start the polling
+          /// start the pollings
           const x = await poll(POLLING_INTERVAL, challenge);
 
-          const { accessToken } = x;
+         const { accessToken } = x;
           const url = `http://${window.location.host}/protected`;
           const resp = await fetch(url, {
             headers: {
@@ -59,12 +59,12 @@
             clearHTML();
             $('#profile').text(JSON.stringify(json.message));
           }
-        }
+       }
 
-      } catch (e) {
+       } catch (e) {
         console.log(e);
       }
-    }
+     }
 
     function poll(interval, challenge) {
       return new Promise(function (resolve, reject) {
